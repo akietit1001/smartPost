@@ -1,9 +1,3 @@
-<script setup>
-    import { defineComponent } from 'vue';
-    import logoVue from '../assets/logo.vue';
-    import AvatarUserVue from './AvatarUser.vue';
-</script>
-
 <template>
     <div class="wrapper__header">
         <logoVue />
@@ -11,10 +5,9 @@
     </div>
 </template>
 
-<script>
-export default defineComponent({
-    name: 'HeaderComponent'
-})
+<script lang="ts" setup>
+    import logoVue from '../assets/logo.vue';
+    import AvatarUserVue from './AvatarUser.vue';
 </script>
 
 <style lang="scss">

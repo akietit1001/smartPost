@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { defineComponent } from 'vue';
 import { CRow, CCol } from '@coreui/vue';
-import HeaderVue from '../components/Header.vue';
-import SidebarVue from '../components/Sidebar/Sidebar.vue';
+import HeaderVue from '@/components/Header.vue';
+import ListuserVue from '@/components/Listuser.vue';
+import Sidebar from '@/components/Sidebar/Sidebar.vue';
 </script>
 
 <template>
@@ -10,17 +10,17 @@ import SidebarVue from '../components/Sidebar/Sidebar.vue';
         <HeaderVue />
         <CRow>
             <CCol sm="2">
-                <SidebarVue />
+                <Sidebar />
             </CCol>
-            <CCol>
-                Content
+            <CCol sm="10">
+                <ListuserVue />
             </CCol>
         </CRow>
     </div>
 </template>
 
-<script lang="ts">
-export default defineComponent({
-    name: 'AdminPage',
-})
-</script>
+<style lang="scss" scoped>
+.row{
+    padding-right: 20px;
+}
+</style>

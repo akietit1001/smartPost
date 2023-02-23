@@ -13,11 +13,14 @@
   "dependencies": {
     "@coreui/icons": "^3.0.0",
     "@coreui/vue": "^4.6.1",
+    "@element-plus/icons-vue": "^2.0.10",
     "bootstrap": "^5.2.3",
     "bootstrap-vue": "^2.23.1",
+    "element-plus": "^2.2.32",
     "pinia": "^2.0.28",
     "sass": "^1.58.3",
     "vue": "^3.2.47",
+    "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
