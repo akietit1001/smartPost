@@ -1,20 +1,13 @@
 <template>
   <div class="wrapper">
-    <svg xmlns="http://www.w3.org/2000/svg" width="14.673" height="14.673" viewBox="0 0 14.673 14.673">
-      <g id="Group_7892" data-name="Group 7892" transform="translate(17.678 9.193) rotate(135)">
-        <g id="Ellipse_6" data-name="Ellipse 6" transform="translate(1 4.001)" fill="#fff" stroke="#222" stroke-width="1.5">
-          <circle cx="5" cy="5" r="5" stroke="none"/>
-          <circle cx="5" cy="5" r="4.25" fill="none"/>
-        </g>
-        <line id="Line_8" data-name="Line 8" y1="6" transform="translate(6 -1)" fill="none" stroke="#222" stroke-width="1.5"/>
-      </g>
-    </svg>
+    <img :src="searchIcon" alt="search icon">
     <input class="input" type="text" :value="props.value" :placeholder="props.placeholder">
 
   </div>
 </template>
 
 <script setup lang="ts">
+import searchIcon from '../assets/icons/search.svg'
 interface Input{
   placeholder: string
   value?: string
@@ -25,6 +18,7 @@ const props = defineProps<Input>()
 <style lang="scss" scoped>
 .wrapper{
   display: flex;
+  flex-direction: row;
   width: 100%;
   justify-content: center;
   align-items: center;

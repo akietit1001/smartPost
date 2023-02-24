@@ -17,6 +17,6 @@
     justify-content: space-between;
     height: 60px;
     padding: 20px;
-    border-bottom: 1px solid #FDFDFD
+    border-bottom: 1px solid #DDDDDD;
 }
 </style>

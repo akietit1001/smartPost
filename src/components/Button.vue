@@ -1,10 +1,11 @@
 <template>
-  <button class="btn">{{ props.children }}</button>
+  <button class="btn">{{ props.text }}</button>
 </template>
 
 <script setup lang="ts">
+
 interface Button {
-    children: Element | String
+    text: Element | String
 }
 
 const props = defineProps<Button>()
@@ -18,6 +19,7 @@ const props = defineProps<Button>()
     font-size: 12px;
     background-color: #35CFAA;
     color: #FFFFFF;
+    width: fit-content;
 
     &:hover{
       background-color: #35CFAA;

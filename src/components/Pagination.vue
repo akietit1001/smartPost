@@ -9,8 +9,6 @@
       :background="background"
       layout="prev, pager, next, jumper"
       :total="2000"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
     />
   </div>
 </template>
@@ -29,15 +27,6 @@ const paperCount = ref(6);
 const small = ref(false)
 const background = ref(true)
 const disabled = ref(false)
-
-const handleSizeChange = (val: number) => {
-  console.log(`${val} items per page`)
-}
-const handleCurrentChange = (val: number) => {
-  console.log(`current page: ${val}`)
-}
-
-
 </script>
 
 <style>

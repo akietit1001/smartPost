@@ -11,6 +11,7 @@
 <style lang="scss" scoped>
 .security{
   margin-bottom: 10px;
+  cursor: pointer;
   font-size: 14px;
 }
 </style>

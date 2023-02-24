@@ -1,10 +1,3 @@
-<script setup lang="ts">
-import { CRow, CCol } from '@coreui/vue';
-import HeaderVue from '@/components/Header.vue';
-import ListuserVue from '@/components/Listuser.vue';
-import Sidebar from '@/components/Sidebar/Sidebar.vue';
-</script>
-
 <template>
     <div>
         <HeaderVue />
@@ -18,6 +11,13 @@ import Sidebar from '@/components/Sidebar/Sidebar.vue';
         </CRow>
     </div>
 </template>
+
+<script setup lang="ts">
+import { CRow, CCol } from '@coreui/vue';
+import HeaderVue from '@/components/Header.vue';
+import ListuserVue from '@/components/Listuser.vue';
+import Sidebar from '@/components/Sidebar.vue';
+</script>
 
 <style lang="scss" scoped>
 .row{

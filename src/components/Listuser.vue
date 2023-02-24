@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="list-title">管理者一覧</div>
 
-        <Button class="btn-add" :children="'+ 管理者の追加'" />
+        <Button class="btn-add" :text="'+ 管理者の追加'" />
 
         <div>
             <el-tabs v-model="activeName" class="demo-tabs">
@@ -42,7 +42,7 @@ const activeName = ref('first')
   color: #6b778c;
   font-size: 16px;
 }
-.el-tabs__item:hover{
+.el-tabs__item.is-top:hover{
     color: #35CFAA;
 }
 .el-tabs__item.is-active{

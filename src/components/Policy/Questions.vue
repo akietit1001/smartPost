@@ -12,6 +12,7 @@
 .questions{
   font-size: 14px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 </style>
 

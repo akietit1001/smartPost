@@ -1,7 +1,7 @@
 <template>
   <el-table :data="tableData" style="width: 100%" height="510" :border="isBorder" :table-layout="tableLayout">
-    <el-table-column prop="name" label="氏名"><AvatarUserVue /></el-table-column>
-    <el-table-column prop="email" label="メールアドレス"/>
+    <el-table-column prop="name" label="氏名" ><AvatarUserVue /></el-table-column>
+    <el-table-column prop="email" label="メールアドレス" />
     <el-table-column prop="role" label="ロール" />
     <el-table-column prop="last_login" label="最終ログイン" />
     <el-table-column prop="options" lable="" width="50">...</el-table-column>
@@ -9,8 +9,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import AvatarUserVue from "./AvatarUser.vue";
+import sortIcon from "../assets/icons/sort.svg"
+onMounted(()=>{
+  const sort = document.querySelectorAll('.cell');
+  console.log(sort)
+})
 const isBorder = ref(true);
 const tableLayout = ref('fixed')
 const tableData = [
@@ -93,6 +98,7 @@ const tableData = [
     last_login: '2022年1月1日'
   },
 ]
+
 </script>
 
 <style>
