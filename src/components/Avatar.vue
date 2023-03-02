@@ -9,8 +9,8 @@
   import { CAvatar } from '@coreui/vue';
   const username = ref("黒太");
   const stylesAvt = {
-    width: '5rem',
-    height: '5rem'
+    width: '4rem',
+    height: '4rem'
   }
 </script>
 
@@ -18,6 +18,7 @@
 .avatar {
   display: flex;
   align-items: center;
+  font-size: 14px;
 }
 .avt-user{
   background-color: #527AC2;

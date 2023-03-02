@@ -1,9 +1,7 @@
 <template>
     <div class="wrapper">
         <div class="list-title">管理者一覧</div>
-
-        <Button class="btn-add" :text="'+ 管理者の追加'" />
-
+        <Button class="btn-add" :primary="ref(true).value" :text="'+ 管理者の追加'" />
         <div>
             <el-tabs v-model="activeName" class="demo-tabs">
                 <SearchInput :placeholder="'テキストを検索'" />
@@ -23,16 +21,16 @@ import Pagination from './Pagination.vue'
 import { ref } from 'vue';
 
 const activeName = ref('first')
+
 </script>
 
 <style>
 
 .list-title{
+    margin-top: 20px;
     font-size: 20px;
 }
 .btn-add{
-    background-color: #35CFAA;
-    color: #FFFFFF;
     margin: 20px 0;
 }
 .icon-plus{

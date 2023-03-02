@@ -1,22 +1,10 @@
 <template>
-    <div>
-        <HeaderVue />
-        <CRow>
-            <CCol sm="2">
-                <Sidebar />
-            </CCol>
-            <CCol sm="10">
-                <ListuserVue />
-            </CCol>
-        </CRow>
-    </div>
+    <ListuserVue />
 </template>
 
 <script setup lang="ts">
 import { CRow, CCol } from '@coreui/vue';
-import HeaderVue from '@/components/Header.vue';
 import ListuserVue from '@/components/Listuser.vue';
-import Sidebar from '@/components/Sidebar.vue';
 </script>
 
 <style lang="scss" scoped>

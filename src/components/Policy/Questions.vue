@@ -12,7 +12,10 @@
 .questions{
   font-size: 14px;
   margin-bottom: 10px;
-  cursor: pointer;
+  &:hover{
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
 </style>
 

@@ -1,20 +1,18 @@
 <template>
   <div>
-    <Button text='変更する' @click="() => { visible = true }" />
-    <CModal :visible="visible" @close="() => { visible = false }">
-      <CModalHeader>
-        <CModalTitle>{{ title }}</CModalTitle>
-      </CModalHeader>
-      <CModalBody>
-        <div class="wrapper-modal-body-password">
-          <InputText label="新しいパスワード" type="password"/>
-          <InputText label="新しいパスワードを確認" type="password" />
-        </div>
-      </CModalBody>
-      <CModalFooter>
-        <Button text="変更する" @click="()=> {visible = false}"/>
-      </CModalFooter>
-    </CModal>
+    <Button text="変更する" :primary="ref(true).value" @click="modalPasswordVisible = true" />
+
+    <el-dialog v-model="modalPasswordVisible" :title="title">
+      <div class="modal-edit-password-body">
+        <InputText label="新しいパスワード" type="password" placeholder="黒須" />
+        <InputText label="新しいパスワードを確認" type="password" placeholder="黒須" />
+      </div>
+      <template #footer>
+        <span class="dialog-footer">
+          <Button text="変更する" :primary="ref(true).value" @click="modalPasswordVisible = false" />
+        </span>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
@@ -22,18 +20,17 @@
 import { ref } from 'vue';
 import Button from './Button.vue';
 import InputText from './InputText.vue';
-import { CButton, CModal, CModalHeader,CModalBody, CModalTitle, CModalFooter} from '@coreui/vue';
-  const visible = ref(false)
+  const modalPasswordVisible = ref(false)
 defineProps<{
   title: string
 }>()
 </script>
 
 <style>
-.wrapper-modal-body-password{
+.modal-edit-password-body{
   display: flex;
   flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+  align-items: center;
+  justify-content: space-around;
 }
 </style>

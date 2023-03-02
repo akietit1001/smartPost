@@ -1,18 +1,46 @@
 import HomeView from '@/views/HomeView.vue';
-import Admin from '@/views/Admin.vue';
-import AdminProfile from '@/views/AdminProfile.vue';
 
 export const routes = [
     {
         path: '/',
-        component: HomeView
+        component: HomeView,
+    },
+    {
+        path: '/login',
+        component: () => import('@/Layout/LoginLayout.vue'),
+        children:[
+            {
+                path: '/login',
+                component: () => import('@/components/FormLogin.vue')
+            },
+            {
+                path: '/login/invite',
+                component: () => import('@/components/FormLogin.vue')
+            },
+        ]
     },
     {
         path: '/admin',
-        component: Admin 
+        component: () => import('@/Layout/AdminLayout.vue'),
+        children: [
+            {
+                path: `/admin/1`,
+                component: () => import('@/views/Admin.vue'),
+                children: [
+                    {
+                        path: 'admin/1/1',
+                        component: () => import ('@/views/AdminProfile.vue')
+                    }
+                ]
+            },
+            {
+                path: '/admin/2',
+                component: () => import ('@/views/AdminProfile.vue')
+            },
+            {
+                path: '/admin/invite',
+                component: () => import('@/views/AdminInvite.vue')
+            }
+        ]
     },
-    {
-        path: '/admin/2',
-        component: AdminProfile
-    }
 ]

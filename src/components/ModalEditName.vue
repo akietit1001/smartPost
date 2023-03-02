@@ -1,49 +1,56 @@
-<template>
+<template> 
   <div>
-    <Button text='変更する' @click="() => { visible = true }" />
-    <CModal :visible="visible" @close="() => { visible = false }">
-      <CModalHeader>
-        <CModalTitle>{{ title }}</CModalTitle>
-      </CModalHeader>
-      <CModalBody>
-        <div class="wrapper-model-body">
-          <InputText label="氏名" type="text" placehoder="入力テキスト"/>
-          <InputText label="" type="text" />
-        </div>
-      </CModalBody>
-      <CModalFooter>
-        <Button text="変更する" @click="()=> {visible = false}"/>
-      </CModalFooter>
-    </CModal>
+    <Button text="変更する" :primary="ref(true).value" @click="modalNameVisible = true" />
+
+    <el-dialog v-model="modalNameVisible" :title="title">
+      <div class="modal-edit-name-body">
+        <InputText label="氏名" type="text" placeholder="黒須" />
+        <InputText label="" type="text" placeholder="黒須" />
+      </div>
+      <template #footer>
+        <span class="dialog-footer">
+          <Button text="変更する" :primary="ref(true).value" @click="modalNameVisible = false" />
+        </span>
+      </template>
+    </el-dialog>
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue';
-import Button from './Button.vue';
+import { ref } from 'vue'
+import Button from './Button.vue'
 import InputText from './InputText.vue';
-import { CButton, CModal, CModalHeader,CModalBody, CModalTitle, CModalFooter} from '@coreui/vue';
-  const visible = ref(false)
+
+const modalNameVisible = ref(false)
+
 defineProps<{
   title: string
 }>()
 </script>
 
 <style>
-.modal.fade.show {
-  display: flex !important;
-  align-items: center;
-}
-
-.wrapper-model-body{
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-around;
-}
-.modal .modal-content{
+.el-dialog{
   width: 460px;
-  border-radius: 0;
 }
-.modal .modal-footer{
+.modal-edit-name-body{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.el-button--text {
+  margin-right: 15px;
+}
+.el-select {
+  width: 300px;
+}
+.el-input {
+  width: 300px;
+}
+.dialog-footer{
+  display: flex;
+  align-items: center;
   justify-content: center;
+}
+.dialog-footer button:first-child {
+  margin-right: 10px;
 }
 </style>

@@ -1,37 +1,50 @@
 <template>
-  <el-dropdown trigger="click">
-        <span class="el-dropdown-link">
-          <p class="title-dropdown">役割を選択する</p>
-          <el-icon class="el-icon--right"><arrow-down /></el-icon>
-        </span>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item >Action 1</el-dropdown-item>
-            <el-dropdown-item >Action 2</el-dropdown-item>
-            <el-dropdown-item >Action 3</el-dropdown-item>
-            <el-dropdown-item >Action 4</el-dropdown-item>
-            <el-dropdown-item >Action 5</el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
+  <div>
+    <div class="label">{{ props.label }}</div>
+    <el-select v-model="value" class="m-2" :placeholder="props.placeholder" size="large">
+    <el-option
+      v-for="item in props.options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value"
+    />
+  </el-select>
+  </div>
 </template>
 
 <script setup lang="ts">
-
+import { ref } from 'vue'
+const value = ref('')
+interface Dropdown{
+  options: Array<{
+    value: string
+    label: string
+  }>
+  label?: string
+  placeholder?: string
+}
+const props = defineProps<Dropdown>();
 </script>
 
 <style>
-.modal .el-dropdown{
-  width: 400px;
+
+.el-select{
+  display: block;
 }
-.el-dropdown-link{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+.el-input__inner{
+  height: 40px;
+}
+
+.el-select.el-select--large{
   width: 100%;
 }
 
-.title-dropdown{
-  margin: 0;
+.el-input__wrapper{
+  margin-right: 12px;
+}
+
+.el-select.el-select--large .el-input{
+  width: 98% !important;
 }
 </style>

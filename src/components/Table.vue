@@ -4,18 +4,16 @@
     <el-table-column prop="email" label="メールアドレス" />
     <el-table-column prop="role" label="ロール" />
     <el-table-column prop="last_login" label="最終ログイン" />
-    <el-table-column prop="options" lable="" width="50">...</el-table-column>
+    <el-table-column prop="options" lable="" width="50">
+      <img class="more-icon" :src="moreIcon" alt="">
+    </el-table-column>
   </el-table>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue"
+import { ref } from "vue"
 import AvatarUserVue from "./AvatarUser.vue";
-import sortIcon from "../assets/icons/sort.svg"
-onMounted(()=>{
-  const sort = document.querySelectorAll('.cell');
-  console.log(sort)
-})
+import moreIcon from '../assets/icons/more.svg'
 const isBorder = ref(true);
 const tableLayout = ref('fixed')
 const tableData = [
@@ -111,5 +109,8 @@ const tableData = [
 }
 .el-table__footer-wrapper, .el-table__header-wrapper{
   border-bottom: 2px solid #DDDDDD
+}
+.more-icon{
+  cursor: pointer;
 }
 </style>
