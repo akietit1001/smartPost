@@ -137,6 +137,8 @@ import ModalEditGroup from './ModalEditGroup.vue'
   margin: 0 0 5px 0 !important;
 }
 .content{
+  display: flex;
+  flex-direction: column;
   font-size: 14px;
 }
 </style>

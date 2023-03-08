@@ -1,8 +1,7 @@
 <template>
   <div class="wrapper">
     <img :src="searchIcon" alt="search icon">
-    <input class="input" type="text" :value="props.value" :placeholder="props.placeholder">
-
+    <input class="input" type="text" :placeholder="props.placeholder" @change="onChange">
   </div>
 </template>
 
@@ -11,6 +10,7 @@ import searchIcon from '../assets/icons/search.svg'
 interface Input{
   placeholder: string
   value?: string
+  onChange ?: void
 }
 const props = defineProps<Input>()
 </script>

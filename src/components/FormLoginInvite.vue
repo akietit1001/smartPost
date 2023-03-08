@@ -6,14 +6,16 @@
   </div>
   <div>
     <InputText
+    id="password"
     @change="handleChangeEmail"
-    type="email" 
+    type="password" 
     label="新しいパスワード" 
     placeholder="入力テキスト" 
     :font-size="12" 
     :font-size-label="10"
     :error="error.email"/>
     <InputText
+    id="password_confirmation"
     @change="handleChangePass"
     type="password" 
     label="パスワードの確認" 
@@ -29,7 +31,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import Validator from '@/process/Validator'
 import InputText from '../components/InputText.vue'
 import Button from '../components/Button.vue'
 import { useRouter } from 'vue-router'
@@ -51,15 +54,22 @@ const handleChangePass = (e) => {
   password.value = e.target.value
 }
 
+
+onMounted(()=>{
+  Validator({
+    form: '.wrapper__form-login-invite',
+    errorSelector: '.error-message',
+    rules: [
+      Validator.isRequired('#password', 'ここにエラーメッセージ'),
+      Validator.isRequired('#password_confirmation', 'ここにエラーメッセージ'),
+      Validator.isConfirmed('#password_confirmation', ()=> {
+        return document.querySelector('.wrapper__form-login-invite #password').value;
+      }, 'ここにエラーメッセージ')
+    ],
+  })
+})
+
 const handleSubmit = () => {
-  if(email.value === '') {
-    error.value.email = true
-    return;
-  }
-  if(password.value === '') {
-    error.value.password = true
-    return;
-  }
   router.push('/login/conditions')
 }
 </script>

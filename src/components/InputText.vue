@@ -3,21 +3,21 @@
     <span class="label" 
     :style="{fontSize: fontSizeLabel + 'px'}">{{ label }}</span>
     <input class="input-text" 
+    :id="id"
     :type="type" 
     :value="value" 
     :placeholder="placeholder" 
-    :style="{fontSize: fontSize + 'px', borderColor: error ? '#D8000C' : '#DDDDDD'}">
-    <ErrorMessage 
-    text="ここにエラーメッセージ" 
+    :style="{fontSize: fontSize + 'px'}">
+    <ErrorMessage
     :font-size="10"
-    :style="{display: error ? 'block' : 'none'}"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import ErrorMessage from '../components/ErrorMessage.vue'
+import ErrorMessage from '../components/ErrorMessage.vue';
 interface Input{
+  id?:  string
   type: string
   value?: string | number
   label?: string
@@ -27,6 +27,7 @@ interface Input{
   error?: boolean
 }
 defineProps<Input>();
+
 </script>
 
 <style>
@@ -44,5 +45,9 @@ defineProps<Input>();
 }
 .label{
   margin: 0 0 5px 0;
+}
+
+.input-text.invalid {
+  border-color: #D8000C;
 }
 </style>

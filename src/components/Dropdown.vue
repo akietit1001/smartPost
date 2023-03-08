@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="label">{{ props.label }}</div>
-    <el-select v-model="value" class="m-2" :placeholder="props.placeholder" size="large">
+    <el-select 
+    v-model="value" 
+    class="m-2"
+    :multiple="props.multiple"
+    :placeholder="props.placeholder" 
+    size="large">
     <el-option
       v-for="item in props.options"
       :key="item.value"
@@ -22,6 +27,7 @@ interface Dropdown{
   }>
   label?: string
   placeholder?: string
+  multiple?: boolean
 }
 const props = defineProps<Dropdown>();
 </script>

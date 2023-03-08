@@ -4,9 +4,9 @@
         <Button class="btn-add" :primary="ref(true).value" :text="'+ 管理者の追加'" />
         <div>
             <el-tabs v-model="activeName" class="demo-tabs">
-                <SearchInput :placeholder="'テキストを検索'" />
-                <el-tab-pane label="登録済み" name="first"><TableVue /></el-tab-pane>
-                <el-tab-pane label="招待中" name="second"><TableVue /></el-tab-pane>
+                <SearchInput :placeholder="'テキストを検索'" :on-change="handleFillUser"/>
+                <el-tab-pane label="登録済み" name="first"><TableVue :data="data" /></el-tab-pane> 
+                <el-tab-pane label="招待中" name="second"><TableVue :data="data"  /></el-tab-pane>
             </el-tabs>
         </div>
         <Pagination />
@@ -14,13 +14,29 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onBeforeMount } from 'vue';
+import { adminApi } from "@/apis/adminApi";
 import Button from './Button.vue'
 import SearchInput from './SearchInput.vue';
 import TableVue from './Table.vue';
 import Pagination from './Pagination.vue'
-import { ref } from 'vue';
-
+const value = ref('');
+const data = ref([]);
 const activeName = ref('first')
+
+onBeforeMount(async ()=>{
+  const response = await adminApi.getAdmin('/getall');
+  data.value = response.data;
+  console.log(data.value)
+})
+
+const handleFillUser = (e) => {
+   value.value = e.target.value
+   console.log(value.value)
+   console.log(data.value.find(user => {
+    user['email'] === value.value;
+   }))
+}
 
 </script>
 

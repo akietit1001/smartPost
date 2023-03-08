@@ -6,6 +6,7 @@
       </div>
       <div>
         <InputText
+        id="email"
         @change="handleChangeEmail"
         type="email" 
         label="メールアドレス" 
@@ -14,6 +15,7 @@
         :font-size-label="10"
         :error="error.email"/>
         <InputText
+        id="password"
         @change="handleChangePass"
         type="password" 
         label="パスワード" 
@@ -29,7 +31,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import Validator from '@/process/Validator'
 import InputText from '../components/InputText.vue'
 import Button from '../components/Button.vue'
 import { useRouter } from 'vue-router'
@@ -51,15 +54,20 @@ const handleChangePass = (e) => {
   password.value = e.target.value
 }
 
+
+onMounted(()=>{
+  Validator({
+    form: '.wrapper__form-login',
+    errorSelector: '.error-message',
+    rules: [
+      Validator.isRequired('#email', 'Enter your email'),
+      Validator.isEmail('#email', 'This is not email'),
+      Validator.isRequired('#password', 'ここにエラーメッセージ'),
+    ],
+  })
+})
+
 const handleSubmit = () => {
-  if(email.value === '') {
-    error.value.email = true
-    return;
-  }
-  if(password.value === '') {
-    error.value.password = true
-    return;
-  }
   router.push('/login/invite')
 }
 

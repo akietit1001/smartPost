@@ -9,8 +9,8 @@
       <div class="input-text__table-admin-invite">
           <InputText label="メールアドレス" type="email" placeholder="xxxxx@xid.inc"/>
         </div>
-        <div class="dropdown__table-admin-invite">
-          <Dropdown :options="options" placeholder="ロールを選択する" label="ロール"/>
+        <div class="dropdown__table-admin-invite" :style="{marginBottom: '10px'}">
+          <Dropdown :options="options" :multiple="true" placeholder="ロールを選択する" label="ロール"/>
         </div>
         <div class="delete-icon__table-admin-invite" @click="removeFormData(index)">
           <img :src="deleteIcon" alt="">
@@ -29,24 +29,12 @@ import NavFooter from './NavFooter.vue';
 import deleteIcon from '@/assets/icons/delete.svg'
 const options = [
   {
-    value: 'option 1',
-    label: 'Option 1',
+    value: 'User',
+    label: 'User',
   },
   {
-    value: 'option 2',
-    label: 'Option 2',
-  },
-  {
-    value: 'option 3',
-    label: 'Option 3',
-  },
-  {
-    value: 'option 4',
-    label: 'Option 4',
-  },
-  {
-    value: 'option 5',
-    label: 'Option 5',
+    value: 'Admin',
+    label: 'Admin',
   },
 ]
 
@@ -89,7 +77,7 @@ const removeFormData = (id: number) => {
 }
 .form__table-admin-invite {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   margin: 0 10px;
   border-bottom: 1px solid #dddddd;
@@ -106,8 +94,9 @@ const removeFormData = (id: number) => {
 }
 .delete-icon__table-admin-invite{
   display: flex;
-    height: 40px;
-    align-items: flex-start;
-    cursor: pointer;
+  height: 40px;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 10px;
 }
 </style>
