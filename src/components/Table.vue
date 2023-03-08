@@ -5,7 +5,7 @@
     <el-table-column prop="role" label="ロール" />
     <el-table-column prop="last_login" label="最終ログイン" />
     <el-table-column prop="options" lable="" width="50">
-      <img class="more-icon" :src="moreIcon" alt="">
+      <img class="more-icon" :src="moreIcon" alt="" @click="handleShowOptionMore">
     </el-table-column>
   </el-table>
 </template>
@@ -14,8 +14,14 @@
 import { ref } from "vue"
 import AvatarUserVue from "./AvatarUser.vue";
 import moreIcon from '../assets/icons/more.svg'
+import DropdownOptions from "./DropdownOptions.vue";
 const isBorder = ref(true);
 const tableLayout = ref('fixed')
+const selectedOptions = ref(false)
+
+const handleShowOptionMore = () => {
+  selectedOptions.value = !selectedOptions.value
+}
 const tableData = [
   {
     name: '黒須 太郎',
@@ -96,7 +102,38 @@ const tableData = [
     last_login: '2022年1月1日'
   },
 ]
-
+const dropdownOptions = [
+  {
+    index: 0,
+    title: '詳細を見る',
+    color: '#222'
+  },
+  {
+    index: 1,
+    title: '氏名の編集',
+    color: '#222'
+  },
+  {
+    index: 2,
+    title: 'メールアドレスの編集',
+    color: '#222'
+  },
+  {
+    index: 3,
+    title: 'グループの編集',
+    color: '#222'
+  },
+  {
+    index: 4,
+    title: '再招待',
+    color: '#222'
+  },
+  {
+    index: 5,
+    title: '削除',
+    color: '#D8000C'
+  },
+]
 </script>
 
 <style>

@@ -2,27 +2,27 @@
   <div class="wrapper__form-login">
     <div>
       <div>
-      <p class="paragraph__form-login">xIDアカウントを使用してログインします</p>
-    </div>
-    <div>
-      <InputText
-      @change="handleChangeEmail"
-      type="email" 
-      label="メールアドレス" 
-      placeholder="入力テキスト" 
-      :font-size="12" 
-      :font-size-label="10"
-      :error="error.email"/>
-      <InputText
-      @change="handleChangePass"
-      type="password" 
-      label="パスワード" 
-      placeholder="入力テキスト" 
-      :font-size="12" 
-      :font-size-label="10"
-      :error="error.password"/>
-    </div>
-    <Button text="ログイン" :primary="ref(true).value" :width-percent="100" :style="styleBtn" @click="handleSubmit"/>
+        <p class="paragraph__form-login">xIDアカウントを使用してログインします</p>
+      </div>
+      <div>
+        <InputText
+        @change="handleChangeEmail"
+        type="email" 
+        label="メールアドレス" 
+        placeholder="入力テキスト" 
+        :font-size="12" 
+        :font-size-label="10"
+        :error="error.email"/>
+        <InputText
+        @change="handleChangePass"
+        type="password" 
+        label="パスワード" 
+        placeholder="入力テキスト" 
+        :font-size="12" 
+        :font-size-label="10"
+        :error="error.password"/>
+      </div>
+        <Button text="ログイン" :primary="ref(true).value" :width-percent="100" :style="styleBtn" @click="handleSubmit"/>
     </div>
     <RouterLink class="link__form-login" to="/forgotpassword">パスワードをお忘れですか？</RouterLink>
   </div>
@@ -52,6 +52,14 @@ const handleChangePass = (e) => {
 }
 
 const handleSubmit = () => {
+  if(email.value === '') {
+    error.value.email = true
+    return;
+  }
+  if(password.value === '') {
+    error.value.password = true
+    return;
+  }
   router.push('/login/invite')
 }
 

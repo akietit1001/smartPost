@@ -11,11 +11,27 @@ export const routes = [
         children:[
             {
                 path: '/login',
-                component: () => import('@/components/FormLogin.vue')
+                component: () => import('@/components/Form.vue'),
+                children: [
+                    {
+                        path: '/login/',
+                        component: () => import('@/components/FormLogin.vue')
+                    },
+                    {
+                        path: '/login/invite',
+                        component: () => import('@/components/FormLoginInvite.vue')
+                    },
+                ]
             },
             {
-                path: '/login/invite',
-                component: () => import('@/components/FormLogin.vue')
+                path: '/login/conditions',
+                component: () => import('@/components/FormConditions.vue'),
+                children: [
+                    {
+                        path: '/login/conditions',
+                        component: () => import('@/components/Conditions.vue')
+                    }
+                ]
             },
         ]
     },

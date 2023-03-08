@@ -3,9 +3,7 @@
     <div>
       <logoVue />
     </div>
-    <div>
-      <Form />
-    </div>
+    <RouterView />
     <div>
       <Footer />
     </div>
@@ -13,8 +11,8 @@
 </template>
 
 <script setup lang="ts">
+import { RouterView } from "vue-router";
 import logoVue from "../assets/logo.vue";
-import Form from "../components/Form.vue";
 import Footer from '../components/Footer.vue'
 </script>
 

@@ -9,9 +9,7 @@
       </div>
       <template #footer>
         <span class="dialog-footer">
-          <Button text="変更する" :primary="ref(true).value" @click="modalReinviteVisible = false">
-            Confirm
-          </Button>
+          <Button text="変更する" :primary="ref(true).value" @click="modalReinviteVisible = false" />
         </span>
       </template>
     </el-dialog>
@@ -20,7 +18,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import Button from './Button.vue';
-import InputText from './InputText.vue';
 const modalReinviteVisible = ref(false)
 defineProps<{
   title: string

@@ -45,9 +45,10 @@ const activeName = ref('first')
 }
 .el-tabs__item.is-active{
     
-    color: #35CFAA !important;
+    color: #222 !important;
 }
 .el-tabs__active-bar.is-top{
+    height: 4px;
     background-color: #35CFAA;
 }
 </style>

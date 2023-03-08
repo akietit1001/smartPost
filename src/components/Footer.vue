@@ -20,7 +20,7 @@ import ServicePolicy from "./Policy/ServicePolicy.vue";
 .wrapper__footer {
   display: flex;
   justify-content: space-between;
-  width: 1200px;
+  width: 75vw;
 }
 .service__footer{
   display: flex;
