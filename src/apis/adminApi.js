@@ -1,7 +1,13 @@
 import axiosClient from "./axiosClient";
 
-export const adminApi = {
-  getAdmin: async (url) => {
-    return axiosClient.get(url);
+const adminApi = {
+  getAllUser: async () => {
+    const url = '/api/user/getall'
+    const response = await axiosClient.get(url)
+    if(response.data) {
+      return response.data
+    }
   }
 }
+
+export default adminApi;

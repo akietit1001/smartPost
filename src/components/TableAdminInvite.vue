@@ -3,21 +3,21 @@
     <div class="inner__table-admin-invite">
       <div class="form__table-admin-invite" v-for="child, index in props.children" :key="index">
       <div class="text-name__table-admin-invite">
-        <InputText label="氏名" type="text" placeholder="氏"/>
-        <InputText type="text" placeholder="名"/>
+        <InputText label="氏名" type="text" placeholder="氏" @change="handleChangeFirstName"/>
+        <InputText type="text" placeholder="名" @change="handleChangeLastName"/>
       </div>
       <div class="input-text__table-admin-invite">
-          <InputText label="メールアドレス" type="email" placeholder="xxxxx@xid.inc"/>
+          <InputText label="メールアドレス" type="email" placeholder="xxxxx@xid.inc" @change="handleChangeEmail"/>
         </div>
         <div class="dropdown__table-admin-invite" :style="{marginBottom: '10px'}">
-          <Dropdown :options="options" :multiple="true" placeholder="ロールを選択する" label="ロール"/>
+          <Dropdown :options="options" :multiple="true" placeholder="ロールを選択する" label="ロール" />
         </div>
         <div class="delete-icon__table-admin-invite" @click="removeFormData(index)">
           <img :src="deleteIcon" alt="">
         </div>
       </div>
     </div>
-    <NavFooter :state-btn="stateBtn()" />
+    <NavFooter :state-btn="stateBtn()" :params="params" />
   </div>
 </template>
 
@@ -27,6 +27,19 @@ import InputText from './InputText.vue';
 import Dropdown from './Dropdown.vue';
 import NavFooter from './NavFooter.vue';
 import deleteIcon from '@/assets/icons/delete.svg'
+
+const firstName = ref('');
+const lastName = ref('');
+const email = ref('');
+const role = ref([]);
+
+const params = ref({
+  firstName,
+  lastName,
+  email,
+  role
+})
+
 const options = [
   {
     value: 'User',
@@ -60,6 +73,18 @@ const emit = defineEmits<{
 
 const removeFormData = (id: number) => {
   emit('removeFormData', id)
+}
+
+const handleChangeFirstName = (e) => {
+  firstName.value = e.target.value
+}
+
+const handleChangeLastName = (e) => {
+  lastName.value = e.target.value
+}
+
+const handleChangeEmail = (e) => {
+  email.value = e.target.value
 }
 
 </script>

@@ -5,7 +5,7 @@
     :primary="ref(true).value" 
     :width-percent="100" 
     :style="{marginTop: 20 + 'px'}" 
-    @click="modalErrorXidVisible = true"/>
+    @click="hanleMoveAdminList"/>
     <el-dialog 
     v-model="modalErrorXidVisible" 
     :title="title"
@@ -28,10 +28,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Button from './Button.vue'
+import { useRouter } from 'vue-router';
 const modalErrorXidVisible = ref(false);
+const router = useRouter();
   defineProps<{
     title: string,
   }>()
+
+const hanleMoveAdminList = () => {
+  router.push('/admin')
+}
 </script>
 
 <style>

@@ -1,12 +1,12 @@
 <template>
     <div class="wrapper">
         <div class="list-title">管理者一覧</div>
-        <Button class="btn-add" :primary="ref(true).value" :text="'+ 管理者の追加'" />
+        <Button class="btn-add" :primary="ref(true).value" :text="'+ 管理者の追加'" @click="router.push('/admin/invite')"/>
         <div>
             <el-tabs v-model="activeName" class="demo-tabs">
-                <SearchInput :placeholder="'テキストを検索'" :on-change="handleFillUser"/>
+                <SearchInput :placeholder="'テキストを検索'" />
                 <el-tab-pane label="登録済み" name="first"><TableVue :data="data" /></el-tab-pane> 
-                <el-tab-pane label="招待中" name="second"><TableVue :data="data"  /></el-tab-pane>
+                <el-tab-pane label="招待中" name="second"><TableVue :data="data" /></el-tab-pane>
             </el-tabs>
         </div>
         <Pagination />
@@ -15,28 +15,33 @@
 
 <script setup lang="ts">
 import { ref, onBeforeMount } from 'vue';
-import { adminApi } from "@/apis/adminApi";
+import adminApi from '@/apis/adminApi';
 import Button from './Button.vue'
 import SearchInput from './SearchInput.vue';
 import TableVue from './Table.vue';
 import Pagination from './Pagination.vue'
-const value = ref('');
+import { useUserStore } from '@/stores/users';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 const data = ref([]);
 const activeName = ref('first')
+const userStore = useUserStore()
+
+const { fetchUsers } = userStore
 
 onBeforeMount(async ()=>{
-  const response = await adminApi.getAdmin('/getall');
-  data.value = response.data;
-  console.log(data.value)
+  const response = await adminApi.getAllUser();
+  await fetchUsers(data)
+  data.value = response;
 })
 
-const handleFillUser = (e) => {
-   value.value = e.target.value
-   console.log(value.value)
-   console.log(data.value.find(user => {
-    user['email'] === value.value;
-   }))
-}
+// const handleFillUser = (e) => {
+//    value.value = e.target.value
+//    console.log(value.value)
+//    console.log(data.value.find(user => {
+//     user['email'] === value.value;
+//    }))
+// }
 
 </script>
 

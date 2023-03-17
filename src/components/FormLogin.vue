@@ -36,12 +36,16 @@ import Validator from '@/process/Validator'
 import InputText from '../components/InputText.vue'
 import Button from '../components/Button.vue'
 import { useRouter } from 'vue-router'
+import userApi from '@/apis/userApi'
+import { useCurrentUserStore } from '@/stores/currentUser'
 const styleBtn = {
   'marginTop': '20px'
 }
 const router = useRouter();
 const email = ref('');
 const password = ref('');
+const currentUserStore = useCurrentUserStore()
+const { updateCurrentUser } = currentUserStore;
 const error = ref({
   email: false,
   password: false
@@ -67,11 +71,17 @@ onMounted(()=>{
   })
 })
 
-const handleSubmit = () => {
-  router.push('/login/invite')
+const handleSubmit = async () => {
+  const res = await userApi.signIn({
+    username: email.value,
+    password: password.value
+  })
+  console.log(res)
+  updateCurrentUser(res)
+  if(res) {
+    router.push('/login/invite')
+  }
 }
-
-
 </script>
 
 <style>

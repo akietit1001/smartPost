@@ -7,7 +7,7 @@
   <div>
     <InputText
     id="password"
-    @change="handleChangeEmail"
+    @change="handlePassword"
     type="password" 
     label="新しいパスワード" 
     placeholder="入力テキスト" 
@@ -36,17 +36,21 @@ import Validator from '@/process/Validator'
 import InputText from '../components/InputText.vue'
 import Button from '../components/Button.vue'
 import { useRouter } from 'vue-router'
+import userApi from '@/apis/userApi'
+import { useCurrentUserStore } from '@/stores/currentUser'
 const styleBtn = {
   'marginTop': '20px'
 }
 const router = useRouter();
+const curentUserStore = useCurrentUserStore();
+const { getterCurrentUser, updateCurrentUser } = curentUserStore
 const email = ref('');
 const password = ref('');
 const error = ref({
   email: false,
   password: false
 });
-const handleChangeEmail = (e) => {
+const handlePassword = (e) => {
   email.value = e.target.value
 }
 
@@ -69,8 +73,16 @@ onMounted(()=>{
   })
 })
 
-const handleSubmit = () => {
-  router.push('/login/conditions')
+const handleSubmit = async () => {
+  const id = getterCurrentUser.id;
+  const res = await userApi.updatePassword(id, {
+    password: password.value
+  })
+  if(res) {
+    // updateCurrentUser(res)
+    console.log(res)
+    router.push('/login/conditions')
+  }
 }
 </script>
 

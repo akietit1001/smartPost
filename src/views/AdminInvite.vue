@@ -16,6 +16,7 @@ import Button from '@/components/Button.vue';
 import TableAdminInvite from '@/components/TableAdminInvite.vue';
 let i = 0;
 let n = 0;
+
 const children = ref<{
   id: number
   child: number

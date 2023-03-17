@@ -8,13 +8,17 @@
 <script setup lang="ts">
     import { ref } from "vue";
     import { CAvatar } from '@coreui/vue';
-    const username = ref("黒太");
-    const name = ref("黒須 太郎");
 
-    // defineProps<{
-    //     username: string
-    //     name: string
-    // }>()
+    // const user = JSON.parse(localStorage.getItem("user"));
+    // const username = `${user.first_name}`.slice(0,1)
+    // const username = ref("黒太");
+    // const name = `${user.first_name} ${user.last_name}`
+    // const name = ref('黒太')
+
+    defineProps<{
+        username: string
+        name: string
+    }>()
 </script>
 
 <style lang="scss">

@@ -15,7 +15,7 @@ import { ref } from 'vue'
 import TitlePage from './TitlePage.vue';
 import { RouterView } from 'vue-router';
 const activeTab = ref('first')
-  
+
 </script>
 
 <style>

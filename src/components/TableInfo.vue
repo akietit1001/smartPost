@@ -5,7 +5,7 @@
       <span class="info-user-title">黒須太郎の情報</span>
       <div class="label-avt">アイコン</div>
       <div class="avt-box">
-        <Avatar />
+        <Avatar :username="getterCurrentUser.first_name" />
         <Button :text="'ファイルを選ぶ'" :primary="ref(true).value" />
       </div>
     </div>
@@ -14,28 +14,28 @@
       <div class="name">
         <div class="box">
           <div class="label">氏名</div>
-          <div class="content">黒須 太郎</div>
+          <div class="content">{{ fullname }}</div>
         </div>
         <ModalEditName title="氏名の編集" />
       </div>
       <div class="email">
         <div class="box">
           <div class="label">メールアドレス</div>
-          <div class="content">xxxxx@xid.inc</div>
+          <div class="content">{{ getterCurrentUser.email }}</div>
         </div>
         <ModalReInvite title="再招待"/>
       </div>
       <div class="password">
         <div class="box">
           <div class="label">パスワード</div>
-          <div class="content" typeof="password">12345</div>
+          <div class="content" typeof="password">{{ getterCurrentUser.password }}</div>
         </div>
         <ModalEditPassword title="パスワードの更新" />
       </div>
       <div class="role">
         <div class="box">
           <div class="label">ロール</div>
-          <div class="content">カスタムロール</div>
+          <div class="content">{{ getterCurrentUser.role }}</div>
         </div>
         <ModalEditRole title="役割の編集" />
       </div>
@@ -69,6 +69,13 @@ import ModalEditRole from './ModalEditRole.vue';
 import ModalEditPassword from './ModalEditPassword.vue'
 import ModalReInvite from './ModalReInvite.vue';
 import ModalEditGroup from './ModalEditGroup.vue'
+import { useCurrentUserStore } from '@/stores/currentUser';
+
+const currentUserStore = useCurrentUserStore();
+
+const { getterCurrentUser } = currentUserStore;
+
+const fullname = `${getterCurrentUser.first_name} ${getterCurrentUser.last_name}`
 </script>
 
 <style scoped>

@@ -1,14 +1,23 @@
 <template>
   <div class="title">
       <span>{{ title }}</span>
-      <span class="exit">このページを終了</span>
+      <span class="exit" @click="exitCurrentPage">このページを終了</span>
     </div>
 </template>
 
 <script setup lang="ts">
+import { useRouter } from "vue-router"
+
+const router = useRouter();
+
 defineProps<{
   title: string
 }>()
+
+
+const exitCurrentPage = () => {
+  router.go(-1)
+}
 </script>
 
 <style scoped>

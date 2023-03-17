@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <img :src="searchIcon" alt="search icon">
-    <input class="input" type="text" :placeholder="props.placeholder" @change="onChange">
+    <input class="input" type="text" :placeholder="props.placeholder" >
   </div>
 </template>
 

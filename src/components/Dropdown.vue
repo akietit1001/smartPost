@@ -25,6 +25,7 @@ interface Dropdown{
     value: string
     label: string
   }>
+  value: string
   label?: string
   placeholder?: string
   multiple?: boolean
