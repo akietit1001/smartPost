@@ -1,11 +1,21 @@
 <template>
   <el-table :data="data" style="width: 100%" height="510" :border="isBorder" :table-layout="tableLayout">
-    <el-table-column sortable prop="firstName" label="氏名" ><AvatarUserVue :username="data.firstName" :name="data.firstName"  /></el-table-column>
-    <el-table-column sortable prop="email" label="メールアドレス" />
-    <el-table-column sortable prop="role" label="ロール" />
-    <el-table-column sortable prop="lastLogin" label="最終ログイン" />
+    <el-table-column sortable prop="firstName" :label="t('listUser.name')">
+      <template #default="scope">
+        <AvatarUserVue :username="scope.row.firstName" :name="scope.row.firstName"  />
+      </template>
+    </el-table-column>
+    <el-table-column sortable prop="email" :label="t('listUser.email')" />
+    <el-table-column sortable prop="role" :key="t('listUser.role')" />
+    <el-table-column sortable prop="lastLogin" :label="t('listUser.lastLogin')"> 
+      <template #default="scope">
+        {{ FormatTime(scope.row.lastLogin) }}
+      </template>  
+    </el-table-column>
     <el-table-column prop="options" lable="" width="50">
-      <OptionsList />
+      <template #default="scope">
+        <OptionsList :id="scope.row.id" />
+      </template>
     </el-table-column>
   </el-table>
 </template>
@@ -14,7 +24,12 @@
 import { ref } from "vue"
 import AvatarUserVue from "./AvatarUser.vue";
 import OptionsList from "./OptionsList.vue";
-import { useUserStore } from "@/stores/users";
+// import { useUserStore } from "@/stores/users";
+import FormatTime from "@/process/FormatTime";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n()
+
 const isBorder = ref(true);
 const tableLayout = ref('fixed')
 

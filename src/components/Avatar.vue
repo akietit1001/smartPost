@@ -5,9 +5,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from "vue";
   import { CAvatar } from '@coreui/vue';
-  // const username = ref("黒太");
   const stylesAvt = {
     width: '4rem',
     height: '4rem'

@@ -15,10 +15,13 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n';
+
+const { t }= useI18n()
 
 onMounted(()=>{
   const goto = document.querySelector('.el-pagination__goto');
-  goto.textContent = 'ページに移動';
+  goto.textContent = t('pagination.goto');
 })
 
 const currentPage = ref(1)

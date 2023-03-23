@@ -1,7 +1,7 @@
 <template>
   <div>
     <Button 
-    text="同意します" 
+    :text="t('login_conditions.agree')" 
     :primary="ref(true).value" 
     :width-percent="100" 
     :style="{marginTop: 20 + 'px'}" 
@@ -29,6 +29,10 @@
 import { ref } from 'vue'
 import Button from './Button.vue'
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n()
+
 const modalErrorXidVisible = ref(false);
 const router = useRouter();
   defineProps<{

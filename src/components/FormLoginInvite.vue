@@ -2,15 +2,15 @@
   <div class="wrapper__form-login-invite">
   <div>
     <div>
-    <p class="paragraph__form-login-invite">パスワードを入力してください。</p>
+    <p class="paragraph__form-login-invite">{{ t('login_invite.enterYourPassword') }}</p>
   </div>
   <div>
     <InputText
     id="password"
     @change="handlePassword"
     type="password" 
-    label="新しいパスワード" 
-    placeholder="入力テキスト" 
+    :label="t('login_invite.newPassword')" 
+    :placeholder="t('login.enter')" 
     :font-size="12" 
     :font-size-label="10"
     :error="error.email"/>
@@ -18,15 +18,15 @@
     id="password_confirmation"
     @change="handleChangePass"
     type="password" 
-    label="パスワードの確認" 
-    placeholder="入力テキスト" 
+    :label="t('login_invite.confirmPassword')" 
+    :placeholder="t('login.enter')" 
     :font-size="12" 
     :font-size-label="10"
     :error="error.password"/>
   </div>
-  <Button text="ログイン" :primary="ref(true).value" :width-percent="100" :style="styleBtn" @click="handleSubmit"/>
+  <Button :text="t('login.loginBtn')" :primary="ref(true).value" :width-percent="100" :style="styleBtn" @click="handleSubmit"/>
   </div>
-  <RouterLink class="link__form-login-invite" to="/forgotpassword">パスワードをお忘れですか？</RouterLink>
+  <RouterLink class="link__form-login-invite" to="/forgotpassword">{{ t('login.forgotPassword') }}</RouterLink>
 </div>
 </template>
 
@@ -38,6 +38,11 @@ import Button from '../components/Button.vue'
 import { useRouter } from 'vue-router'
 import userApi from '@/apis/userApi'
 import { useCurrentUserStore } from '@/stores/currentUser'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
+
 const styleBtn = {
   'marginTop': '20px'
 }

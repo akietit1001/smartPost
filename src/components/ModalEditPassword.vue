@@ -20,14 +20,20 @@
 import { ref } from 'vue';
 import Button from './Button.vue';
 import InputText from './InputText.vue';
-import { useCurrentUserStore } from '@/stores/currentUser';
+// import { useCurrentUserStore } from '@/stores/currentUser';
+import { useUserStore } from '@/stores/users';
 import userApi from '@/apis/userApi';
+import { useRouter } from 'vue-router';
+const router = useRouter()
 
 const password = ref('');
 const passwordConfirm = ref('');
-const currentUserStore = useCurrentUserStore()
-const { getterCurrentUser, updateCurrentUser } = currentUserStore;
-const id = getterCurrentUser.id;
+// const currentUserStore = useCurrentUserStore()
+const userStore = useUserStore()
+
+const { getterUsers, updateUser } = userStore;
+// const { getterCurrentUser, updateCurrentUser } = currentUserStore;
+// const id = getterCurrentUser.id;
 const modalPasswordVisible = ref(false)
 
 const handleChangePassword = (e) => {
@@ -39,13 +45,18 @@ const handleChangePasswordConfirm = (e) => {
 }
 
 const handleUpdatePassword = async () => {
-  const res = await userApi.updatePassword(id, {
-    password: passwordConfirm.value
-  })
-
-  if(res) {
-    updateCurrentUser(res)
-    modalPasswordVisible.value = false
+  const id = router.currentRoute.value.params.id*1
+  for(let i = 0; i< getterUsers.length; i++) {
+    if(id === getterUsers[i].id) {
+      const res = await userApi.updatePassword(id, {
+        password: passwordConfirm.value
+      })
+    if(res) {
+      console.log(res)
+      updateUser(id, res)
+      modalPasswordVisible.value = false
+    }
+    }
   }
 }
 defineProps<{

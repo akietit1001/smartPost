@@ -37,60 +37,65 @@ import contactIcon from "@/assets/icons/contact.svg";
 import productIcon from "@/assets/icons/product.svg";
 import shieldIcon from "@/assets/icons/shield.svg";
 import QR_Icon from "@/assets/icons/QR.svg";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n()
+
+
 const selected = ref(-1);
 const itemsSidebar = [
   {
       index: '1',
-      title: 'プロジェクト一覧',
-      path: '/admin/1',
+      title: t('sidebar.projectList'),
+      path: '/admin/#',
       iconLeft: letterIcon,
   },
   {
       index: '2',
-      title: 'Welcomeメッセージ',
-      path: '/admin/2',
+      title: t('sidebar.messageWelcome'),
+      path: '/admin/#',
       iconLeft: messageIcon,
   },
   {
       index: '3',
-      title: 'アカウント設定',
-      path: '/admin/1',
+      title: t('sidebar.accountSetting'),
+      path: '/admin/#',
       iconLeft: shieldIcon,
       child: [
           {
-              title: 'カスタムポリシー',
-              to: '/admin/1'
+              title: t('sidebar.customPolicy'),
+              to: '/admin/#'
           },
           {
-              title: 'カスタムロール',
-              to: '/admin/2'
+              title: t('sidebar.customRoll'),
+              to: '/admin/#'
           },
           {
-              title: 'グループ',
-              to: '/admin/3'
+              title: t('sidebar.group'),
+              to: '/admin/#'
           },
           {
-              title: '管理者',
-              to: '/admin/4'
+              title: t('sidebar.admin'),
+              to: '/admin/#'
           },
       ]
   },
   {
       index: '3',
-      title: '利用者一覧',
-      path: '/admin/2',
+      title: t('sidebar.userList'),
+      path: '/admin/main',
       iconLeft: contactIcon,
   },
   {
       index: '4',
-      title: '利用ログ一覧',
-      path: '/admin/4',
+      title: t('sidebar.usageLogList'),
+      path: '/admin/#',
       iconLeft: productIcon,
   },
   {
       index: '5',
-      title: 'QRコード管理',
-      path: '/admin/5',
+      title: t('sidebar.QRcode'),
+      path: '/admin/#',
       iconLeft: QR_Icon,
   }
 ]

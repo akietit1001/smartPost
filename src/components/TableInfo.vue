@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper">
     <NavSubVue title="管理者情報"/>
-    <div>
+    <div :key="key">
       <span class="info-user-title">黒須太郎の情報</span>
       <div class="label-avt">アイコン</div>
       <div class="avt-box">
-        <Avatar :username="getterCurrentUser.first_name" />
+        <Avatar :username="getterUsers[props.id-1].firstName.slice(0,1).toUpperCase()" />
         <Button :text="'ファイルを選ぶ'" :primary="ref(true).value" />
       </div>
     </div>
@@ -21,21 +21,21 @@
       <div class="email">
         <div class="box">
           <div class="label">メールアドレス</div>
-          <div class="content">{{ getterCurrentUser.email }}</div>
+          <div class="content">{{ getterUsers[props.id-1].email }}</div>
         </div>
         <ModalReInvite title="再招待"/>
       </div>
       <div class="password">
         <div class="box">
           <div class="label">パスワード</div>
-          <div class="content" typeof="password">{{ getterCurrentUser.password }}</div>
+          <div class="content" typeof="password">{{ getterUsers[props.id-1].password }}</div>
         </div>
         <ModalEditPassword title="パスワードの更新" />
       </div>
       <div class="role">
         <div class="box">
           <div class="label">ロール</div>
-          <div class="content">{{ getterCurrentUser.role }}</div>
+          <div class="content">{{ getterUsers[props.id-1].role }}</div>
         </div>
         <ModalEditRole title="役割の編集" />
       </div>
@@ -70,12 +70,22 @@ import ModalEditPassword from './ModalEditPassword.vue'
 import ModalReInvite from './ModalReInvite.vue';
 import ModalEditGroup from './ModalEditGroup.vue'
 import { useCurrentUserStore } from '@/stores/currentUser';
+import { useUserStore } from '@/stores/users';
 
-const currentUserStore = useCurrentUserStore();
+const props = defineProps<{
+  id?: number
+}>()
 
-const { getterCurrentUser } = currentUserStore;
 
-const fullname = `${getterCurrentUser.first_name} ${getterCurrentUser.last_name}`
+const userStore = useUserStore();
+
+const { getterUsers, key } = userStore;
+
+// const currentUserStore = useCurrentUserStore();
+
+// const { getterCurrentUser } = currentUserStore;
+
+const fullname = `${getterUsers[props.id-1].firstName} ${getterUsers[props.id-1].lastName}`
 </script>
 
 <style scoped>

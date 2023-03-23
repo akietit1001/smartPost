@@ -1,11 +1,12 @@
 <template>
   <div class="questions">
-    よくある質問
+    {{ t('footer.FAQ') }}
   </div>
 </template>
 
 <script lang="ts" setup>
-
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n()
 </script>
 
 <style lang="scss" scoped>

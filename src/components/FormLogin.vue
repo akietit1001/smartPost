@@ -2,15 +2,15 @@
   <div class="wrapper__form-login">
     <div>
       <div>
-        <p class="paragraph__form-login">xIDアカウントを使用してログインします</p>
+        <p class="paragraph__form-login">{{ t('login.loginByxIDAccount') }}</p>
       </div>
       <div>
         <InputText
         id="email"
         @change="handleChangeEmail"
         type="email" 
-        label="メールアドレス" 
-        placeholder="入力テキスト" 
+        :label="t('login.email')" 
+        :placeholder="t('login.enter')" 
         :font-size="12" 
         :font-size-label="10"
         :error="error.email"/>
@@ -18,15 +18,15 @@
         id="password"
         @change="handleChangePass"
         type="password" 
-        label="パスワード" 
-        placeholder="入力テキスト" 
+        :label="t('login.password')" 
+        :placeholder="t('login.enter')" 
         :font-size="12" 
         :font-size-label="10"
         :error="error.password"/>
       </div>
-        <Button text="ログイン" :primary="ref(true).value" :width-percent="100" :style="styleBtn" @click="handleSubmit"/>
+        <Button :text="t('login.loginBtn')" :primary="ref(true).value" :width-percent="100" :style="styleBtn" @click="handleSubmit"/>
     </div>
-    <RouterLink class="link__form-login" to="/forgotpassword">パスワードをお忘れですか？</RouterLink>
+    <RouterLink class="link__form-login" to="/forgotpassword">{{ t('login.forgotPassword') }}</RouterLink>
   </div>
 </template>
 
@@ -38,6 +38,10 @@ import Button from '../components/Button.vue'
 import { useRouter } from 'vue-router'
 import userApi from '@/apis/userApi'
 import { useCurrentUserStore } from '@/stores/currentUser'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
 const styleBtn = {
   'marginTop': '20px'
 }
@@ -66,7 +70,7 @@ onMounted(()=>{
     rules: [
       Validator.isRequired('#email', 'Enter your email'),
       Validator.isEmail('#email', 'This is not email'),
-      Validator.isRequired('#password', 'ここにエラーメッセージ'),
+      Validator.isRequired('#password', t('login.error')),
     ],
   })
 })

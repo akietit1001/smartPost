@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper__header">
         <logoVue />
-        <AvatarUserVue :name="fullname" :username="getterCurrentUser.first_name.slice(0,1)" />
+        <AvatarUserVue :name="fullname" :username="getterCurrentUser.firstName.slice(0,1).toUpperCase()" />
     </div>
 </template>
 
@@ -12,9 +12,7 @@
     
     const { getterCurrentUser } = useCurrentUserStore()
     
-    const fullname = getterCurrentUser.first_name + " " + getterCurrentUser.last_name;
-    
-    console.log(getterCurrentUser)
+    const fullname = getterCurrentUser.firstName + " " + getterCurrentUser.lastName;
     
 </script>
 

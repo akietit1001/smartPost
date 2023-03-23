@@ -40,17 +40,12 @@ export const routes = [
         component: () => import('@/Layout/AdminLayout.vue'),
         children: [
             {
-                path: `/admin/1`,
+                path: `/admin/main`,
                 component: () => import('@/views/Admin.vue'),
-                children: [
-                    {
-                        path: 'admin/1/1',
-                        component: () => import ('@/views/AdminProfile.vue')
-                    }
-                ]
             },
             {
-                path: '/admin/2',
+                path: '/admin/:id',
+                name: 'adminSingle',
                 component: () => import ('@/views/AdminProfile.vue')
             },
             {

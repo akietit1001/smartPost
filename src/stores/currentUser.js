@@ -2,7 +2,8 @@ import { defineStore } from 'pinia'
 
 export const useCurrentUserStore = defineStore('currentUser', {
   state: () => ({
-    currentUser: {}
+    currentUser: {},
+    key: 0
   }),
 
   getters: {

@@ -1,12 +1,12 @@
 <template>
     <div class="wrapper">
-        <div class="list-title">管理者一覧</div>
-        <Button class="btn-add" :primary="ref(true).value" :text="'+ 管理者の追加'" @click="router.push('/admin/invite')"/>
+        <div class="list-title">{{ t('listUser.adminList') }}</div>
+        <Button class="btn-add" :primary="ref(true).value" :text="t('listUser.addAdmin')" @click="router.push('/admin/invite')"/>
         <div>
             <el-tabs v-model="activeName" class="demo-tabs">
-                <SearchInput :placeholder="'テキストを検索'" />
-                <el-tab-pane label="登録済み" name="first"><TableVue :data="data" /></el-tab-pane> 
-                <el-tab-pane label="招待中" name="second"><TableVue :data="data" /></el-tab-pane>
+                <SearchInput :placeholder="t('searchInput.search')" />
+                <el-tab-pane :label="t('listUser.registered')" name="first"><TableVue :data="data" /></el-tab-pane> 
+                <el-tab-pane :label="t('listUser.inviting')" name="second"><TableVue :data="data" /></el-tab-pane>
             </el-tabs>
         </div>
         <Pagination />
@@ -22,6 +22,10 @@ import TableVue from './Table.vue';
 import Pagination from './Pagination.vue'
 import { useUserStore } from '@/stores/users';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n()
+
 const router = useRouter();
 const data = ref([]);
 const activeName = ref('first')
@@ -31,8 +35,8 @@ const { fetchUsers } = userStore
 
 onBeforeMount(async ()=>{
   const response = await adminApi.getAllUser();
-  await fetchUsers(data)
   data.value = response;
+  fetchUsers(data.value)
 })
 
 // const handleFillUser = (e) => {

@@ -4,27 +4,67 @@
 
     <el-dialog v-model="modalNameVisible" :title="title">
       <div class="modal-edit-name-body">
-        <InputText label="氏名" type="text" placeholder="黒須" />
-        <InputText label="" type="text" placeholder="黒須" />
+        <InputText label="氏名" type="text" placeholder="黒須" @change="handleChangeFirstName"/>
+        <InputText label="" type="text" placeholder="黒須" @change="handleChangeLastName"/>
       </div>
       <template #footer>
         <span class="dialog-footer">
-          <Button text="変更する" :primary="ref(true).value" @click="modalNameVisible = false" />
+          <Button text="変更する" :primary="ref(true).value" @click="handleUpdateName" />
         </span>
       </template>
     </el-dialog>
   </div>
 </template>
 <script setup lang="ts">
+import userApi from '@/apis/userApi';
 import { ref } from 'vue'
 import Button from './Button.vue'
 import InputText from './InputText.vue';
-
-const modalNameVisible = ref(false)
+// import { useCurrentUserStore}  from '@/stores/currentUser'
+import { useUserStore } from '@/stores/users';
+import { useRouter } from 'vue-router';
+const router = useRouter()
 
 defineProps<{
   title: string
 }>()
+
+const firstName = ref('')
+const lastName = ref('')
+// const currentUserStore = useCurrentUserStore();
+
+const { getterUsers, updateUser, key } = useUserStore()
+
+const modalNameVisible = ref(false)
+
+
+const handleChangeFirstName = (e) => {
+  firstName.value = e.target.value
+}
+
+const handleChangeLastName = (e) => {
+  lastName.value = e.target.value
+}
+
+
+const handleUpdateName = async () => {
+  const id = router.currentRoute.value.params.id*1
+  for(let i = 0; i< getterUsers.length; i++) {
+    if(id === getterUsers[i].id) {
+      const res = await userApi.updateName(id, {
+      firstName: firstName.value,
+      lastName: lastName.value
+    })
+      if(res) {
+        updateUser(id, res)
+        modalNameVisible.value = false
+      }
+      break;
+    }
+  }
+}
+
+
 </script>
 
 <style>

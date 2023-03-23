@@ -1,19 +1,12 @@
 <template>
     <div class="avt">
-        <CAvatar class="avt-user">{{ username }}</CAvatar>
+        <CAvatar class="avt-user">{{ username.slice(0,1).toUpperCase() }}</CAvatar>
         <span class="name-user">{{ name }}</span>
     </div>
 </template>
 
 <script setup lang="ts">
-    import { ref } from "vue";
     import { CAvatar } from '@coreui/vue';
-
-    // const user = JSON.parse(localStorage.getItem("user"));
-    // const username = `${user.first_name}`.slice(0,1)
-    // const username = ref("黒太");
-    // const name = `${user.first_name} ${user.last_name}`
-    // const name = ref('黒太')
 
     defineProps<{
         username: string

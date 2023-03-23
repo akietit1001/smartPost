@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper__form">
-    <TitlePage title="SmartPOSTログイン" :font-size="20" />
+    <TitlePage :title="t('login.title')" :font-size="20" />
       <div class="tabs__login-layout">
         <el-tabs v-model="activeTab" class="demo-tabs">
-          <el-tab-pane label="xIDを使用する" name="first">Hi</el-tab-pane>
-          <el-tab-pane label="メールを使用する" name="second"><RouterView /></el-tab-pane>
+          <el-tab-pane :label="t('login.usexID')" name="first">Hi</el-tab-pane>
+          <el-tab-pane :label="t('login.useEmail')" name="second"><RouterView /></el-tab-pane>
         </el-tabs>
       </div>
     </div>
@@ -14,6 +14,11 @@
 import { ref } from 'vue'
 import TitlePage from './TitlePage.vue';
 import { RouterView } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+
+const {t} = useI18n()
+
+
 const activeTab = ref('first')
   
 </script>
