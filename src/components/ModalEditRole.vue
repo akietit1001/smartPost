@@ -1,14 +1,14 @@
 <template>
   <div>
-    <Button text="変更する" :primary="ref(true).value" @click="modalRoleVisible = true" />
+    <Button :text="t('admin_info.change')" :primary="ref(true).value" @click="modalRoleVisible = true" />
 
     <el-dialog v-model="modalRoleVisible" :title="title">
       <div class="modal-edit-role-body">
-        <Dropdown :options="options" label="新しい役割" placeholder="役割を選択する"/>
+        <Dropdown :options="options" :label="t('modalEditRole_1.newRole')" :placeholder="t('modalEditRole_1.chooseRole')"/>
       </div>
       <template #footer>
         <span class="dialog-footer">
-          <Button text="変更する" :primary="ref(true).value" @click="modalRoleVisible = false" />
+          <Button :text="t('admin_info.change')" :primary="ref(true).value" @click="modalRoleVisible = false" />
         </span>
       </template>
     </el-dialog>
@@ -17,8 +17,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Button from './Button.vue';
 import Dropdown from './Dropdown.vue';
+
+const { t } = useI18n()
 const modalRoleVisible = ref(false)
 defineProps<{
   title: string

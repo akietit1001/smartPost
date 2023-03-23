@@ -13,6 +13,9 @@ export const messages = {
       useEmail: 'メールを使用する',
       title: 'SmartPOSTログイン',
     },
+    navSub: {
+      exit: 'このページを終了'
+    },
     footer: {
       FAQ: 'よくある質問',
       privacyPolicy: 'プライバシーポリシー',
@@ -56,6 +59,55 @@ export const messages = {
     },
     pagination: {
       goto: 'ページに移動'
+    },
+    option_list: {
+      viewDetail: '詳細を見る',
+      editName: '氏名の編集',
+      editEmail: 'メールアドレスの編集',
+      editGroup: 'グループの編集',
+      reinvitation: '再招待',
+      delete: '削除'
+    },
+    admin_invite: {
+      addAdmin: '管理者の追加',
+      complete: '完了',
+      firstName: '氏',
+      lastName: '名',
+      chooseRole: 'ロールを選択する',
+    },
+    admin_info: {
+      adminInfo: '管理者情報',
+      infoOn: 'の情報',
+      avatar: 'アイコン',
+      basicInfo: '基本情報',
+      chooseFile: 'ファイルを選ぶ',
+      change: '変更する',
+      reset: 'リセット'
+    },
+    modalReinvite: {
+      areYouSure: 'への招待状を再送信してもよろしいですか？',
+      aMail: 'メールが',
+      willBeSentTo: 'に送信されます。'
+    },
+    modalUpdatePassword: {
+      updatePassword: 'パスワードの更新',
+      newPassword: '新しいパスワード',
+      confirmNewPassword: '新しいパスワードを確認',
+    },
+    modalEditRole_1: {
+      editRole: '役割の編集',
+      newRole: '新しい役割',
+      chooseRole: '役割を選択する'
+    },
+    modalEditGroup: {
+      groupSetting: 'グループの設定',
+      group: 'グループ',
+      enterGroup: 'グループを入力してください'
+    },
+    modalDelete: {
+      delete: '削除',
+      areYouSure_1: `この管理者を削除してもよろしいですか？`,
+      areYouSure_2: '管理者は完全に削除されます。'
     }
   },
 
@@ -71,6 +123,9 @@ export const messages = {
       usexID: 'Use xID',
       useEmail: 'Use email',
       title: 'SmartPOST Login'
+    },
+    navSub: {
+      exit: 'Exit this page'
     },
     footer: {
       FAQ: 'FAQ',
@@ -115,6 +170,55 @@ export const messages = {
     },
     pagination: {
       goto: 'Go to'
+    },
+    option_list: {
+      viewDetail: 'View the details',
+      editName: 'Edit name',
+      editEmail: 'Edit email',
+      editGroup: 'Edit group',
+      reinvitation: 'Reinvitation',
+      delete: 'Delete'
+    },
+    admin_invite: {
+      addAdmin: 'Add admin',
+      complete: 'Complete',
+      firstName: 'First name',
+      lastName: 'Last name',
+      chooseRole: 'Choose a role',
+    },
+    admin_info: {
+      adminInfo: 'Administrator infomation',
+      infoOn: 'Infomation on',
+      avatar: 'Avatar',
+      basicInfo: 'Basic information',
+      chooseFile: 'Choose a file',
+      change: 'Change',
+      reset: 'Reset'
+    },
+    modalReinvite: {
+      areYouSure: 'Are you sure you want to resend the invitation to',
+      aMail: 'A mail',
+      willBeSentTo: 'will be sent to'
+    },
+    modalUpdatePassword: {
+      updatePassword: 'Update password',
+      newPassword: 'New password',
+      confirmNewPassword: 'Confirm new password',
+    },
+    modalEditRole_1: {
+      editRole: 'Edit role',
+      newRole: 'New role',
+      chooseRole: 'Choose a role'
+    },
+    modalEditGroup: {
+      groupSetting: 'Group setting',
+      group: 'Group',
+      enterGroup: 'Please enter a group'
+    },
+    modalDelete: {
+      delete: 'Delete',
+      areYouSure_1: `Are you sure you want to remove this administrator?`,
+      areYouSure_2: 'The admin is permanently removed.',
     }
   }
 }

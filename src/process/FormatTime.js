@@ -7,6 +7,4 @@ function FormatTime(time) {
   return `${year}年${month}月${date}日`
 }
 
-console.log(FormatTime('2023-03-17T16:35:22.111881+07:00'))
-
 export default FormatTime

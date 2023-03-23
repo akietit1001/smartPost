@@ -1,15 +1,15 @@
 <template> 
   <div>
-    <Button text="変更する" :primary="ref(true).value" @click="modalNameVisible = true" />
+    <Button :text="t('admin_info.change')" :primary="ref(true).value" @click="modalNameVisible = true" />
 
     <el-dialog v-model="modalNameVisible" :title="title">
       <div class="modal-edit-name-body">
-        <InputText label="氏名" type="text" placeholder="黒須" @change="handleChangeFirstName"/>
-        <InputText label="" type="text" placeholder="黒須" @change="handleChangeLastName"/>
+        <InputText :label="t('listUser.name')" type="text" :placeholder="t('admin_invite.firstName')" @change="handleChangeFirstName"/>
+        <InputText label="" type="text" :placeholder="t('admin_invite.lastName')" @change="handleChangeLastName"/>
       </div>
       <template #footer>
         <span class="dialog-footer">
-          <Button text="変更する" :primary="ref(true).value" @click="handleUpdateName" />
+          <Button :text="t('admin_info.change')" :primary="ref(true).value" @click="handleUpdateName" />
         </span>
       </template>
     </el-dialog>
@@ -23,6 +23,9 @@ import InputText from './InputText.vue';
 // import { useCurrentUserStore}  from '@/stores/currentUser'
 import { useUserStore } from '@/stores/users';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n() 
 const router = useRouter()
 
 defineProps<{

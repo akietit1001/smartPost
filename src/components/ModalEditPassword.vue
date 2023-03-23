@@ -1,15 +1,15 @@
 <template>
   <div>
-    <Button text="変更する" :primary="ref(true).value" @click="modalPasswordVisible = true" />
+    <Button :text="t('admin_info.reset')" :primary="ref(true).value" @click="modalPasswordVisible = true" />
 
     <el-dialog v-model="modalPasswordVisible" :title="title">
       <div class="modal-edit-password-body">
-        <InputText label="新しいパスワード" type="password" placeholder="黒須" @change="handleChangePassword"/>
-        <InputText label="新しいパスワードを確認" type="password" placeholder="黒須" @change="handleChangePasswordConfirm"/>
+        <InputText :label="t('modalUpdatePassword.newPassword')" type="password" :placeholder="t('modalUpdatePassword.newPassword')" @change="handleChangePassword"/>
+        <InputText :label="t('modalUpdatePassword.confirmNewPassword')" type="password" :placeholder="t('modalUpdatePassword.confirmNewPassword')" @change="handleChangePasswordConfirm"/>
       </div>
       <template #footer>
         <span class="dialog-footer">
-          <Button text="変更する" :primary="ref(true).value" @click="handleUpdatePassword" />
+          <Button :text="t('admin_info.change')" :primary="ref(true).value" @click="handleUpdatePassword" />
         </span>
       </template>
     </el-dialog>
@@ -24,6 +24,11 @@ import InputText from './InputText.vue';
 import { useUserStore } from '@/stores/users';
 import userApi from '@/apis/userApi';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n()
+
+
 const router = useRouter()
 
 const password = ref('');

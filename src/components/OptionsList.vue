@@ -3,14 +3,15 @@
     <img class="more-icon" :src="moreIcon" alt="" @click="handleShowOptionMore">
     <div class="inner__option-list" :style="{display: open ? 'flex' : 'none'}">
       <ul class="option-list">
-        <li class="option-item" @click="handleLog">詳細を見る</li>
-        <li class="option-item">氏名の編集</li>
-        <li class="option-item">メールアドレスの編集</li>
-        <li class="option-item">グループの編集</li>
-        <li class="option-item">再招待</li>
-        <li class="option-item option-item__delete">削除</li>
+        <li class="option-item" @click="handleLog">{{ t('option_list.viewDetail') }}</li>
+        <li class="option-item">{{ t('option_list.editName') }}</li>
+        <li class="option-item">{{ t('option_list.editEmail') }}</li>
+        <li class="option-item">{{ t('option_list.editGroup') }}</li>
+        <li class="option-item">{{ t('option_list.reinvitation') }}</li>
+        <li class="option-item option-item__delete" @click="handleOpenModalDelete">{{ t('option_list.delete') }}</li>
       </ul>
     </div>
+    <ModalDeleteUser title="Delete" :modal-delete-visible="modalDeleteVisible" :close-modal="handleCloseModalDelete"/>
   </div>
 </template>
 
@@ -18,7 +19,15 @@
 import { ref } from 'vue'
 import moreIcon from '../assets/icons/more.svg';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import userApi from '@/apis/userApi';
+import ModalDeleteUser from './ModalDeleteUser.vue';
+
+const { t } = useI18n();
+
+
 const open = ref(false);
+const modalDeleteVisible = ref(false)
 const router = useRouter()
 
 const props = defineProps<{
@@ -26,16 +35,22 @@ const props = defineProps<{
 }>()
 
 const handleLog = () => {
-  console.log(props.id)
   router.push({
     name: 'adminSingle',
     params: {
       id: props.id
     }
   })
-
-  
 }
+
+const handleOpenModalDelete = () => {
+  return modalDeleteVisible.value = true
+}
+
+const handleCloseModalDelete = () => {
+  return modalDeleteVisible.value = false
+}
+
 
 const handleShowOptionMore = () => {
   return open.value = !open.value;
@@ -64,6 +79,10 @@ const handleShowOptionMore = () => {
   &.hover{
     opacity: 0.4;
   }
+}
+
+.option-list>li{
+  margin: 10px 0;
 }
 
 .option-item{

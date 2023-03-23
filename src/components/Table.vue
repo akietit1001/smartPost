@@ -6,7 +6,7 @@
       </template>
     </el-table-column>
     <el-table-column sortable prop="email" :label="t('listUser.email')" />
-    <el-table-column sortable prop="role" :key="t('listUser.role')" />
+    <el-table-column sortable prop="role" :label="t('listUser.role')" />
     <el-table-column sortable prop="lastLogin" :label="t('listUser.lastLogin')"> 
       <template #default="scope">
         {{ FormatTime(scope.row.lastLogin) }}

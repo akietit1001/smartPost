@@ -1,12 +1,15 @@
 <template>
   <div class="title">
       <span>{{ title }}</span>
-      <span class="exit" @click="exitCurrentPage">このページを終了</span>
+      <span class="exit" @click="exitCurrentPage">{{ t('navSub.exit') }}</span>
     </div>
 </template>
 
 <script setup lang="ts">
+import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router"
+
+const { t } = useI18n()
 
 const router = useRouter();
 

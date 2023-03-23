@@ -11,7 +11,7 @@ import '@coreui/coreui/dist/css/coreui.min.css'
 import 'element-plus/dist/index.css'
 
 const i18n = createI18n({
-  locale: 'ja',
+  locale: 'en',
   fallbackLocale: 'en',
   legacy: false,
   messages: messages

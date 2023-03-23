@@ -44,6 +44,14 @@ const userApi = {
       return response.data
     }
   },
+
+  deleteUser: async (id) => {
+    const url = `/api/user/delete/${id}`
+    const response = await axiosClient.delete(url)
+    if (response.data) {
+      return response.data
+    }
+  }
 }
 
 export default userApi;

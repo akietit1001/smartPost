@@ -1,15 +1,15 @@
 <template>
   <div>
-    <Button text="変更する" :primary="ref(true).value" @click="modalReinviteVisible = true" />
+    <Button :text="t('admin_info.change')" :primary="ref(true).value" @click="modalReinviteVisible = true" />
 
     <el-dialog v-model="modalReinviteVisible" :title="title">
       <div class="modal-reinvite-body">
-        <p>黒須 太郎への招待状を再送信してもよろしいですか？</p>
-        <p>メールがxxxxx@xid.incに送信されます。</p>
+        <p>{{name + ' ' + t('modalReinvite.areYouSure')}}</p>
+        <p>{{ t('modalReinvite.areYouSure') + ' ' + email + ' ' + t('modalReinvite.willBeSentTo')}}</p>
       </div>
       <template #footer>
         <span class="dialog-footer">
-          <Button text="変更する" :primary="ref(true).value" @click="modalReinviteVisible = false" />
+          <Button :text="t('admin_info.change')" :primary="ref(true).value" @click="modalReinviteVisible = false" />
         </span>
       </template>
     </el-dialog>
@@ -17,10 +17,15 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import Button from './Button.vue';
+
+const { t } = useI18n()
 const modalReinviteVisible = ref(false)
 defineProps<{
   title: string
+  name?: string
+  email?: string
 }>()
 </script>
 
@@ -31,5 +36,6 @@ defineProps<{
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  text-align: center;
 }
 </style>

@@ -1,47 +1,47 @@
 <template>
   <div class="wrapper">
-    <NavSubVue title="管理者情報"/>
+    <NavSubVue :title="t('admin_info.adminInfo')"/>
     <div :key="key">
-      <span class="info-user-title">黒須太郎の情報</span>
-      <div class="label-avt">アイコン</div>
+      <span class="info-user-title"> {{ fullname + ' ' + t('admin_info.infoOn') }}</span>
+      <div class="label-avt">{{ t('admin_info.avatar') }}</div>
       <div class="avt-box">
         <Avatar :username="getterUsers[props.id-1].firstName.slice(0,1).toUpperCase()" />
-        <Button :text="'ファイルを選ぶ'" :primary="ref(true).value" />
+        <Button :text="t('admin_info.chooseFile')" :primary="ref(true).value" />
       </div>
     </div>
     <div class="inner">
-      <p class="basic-title">基本情報</p>
+      <p class="basic-title">{{ t('admin_info.basicInfo') }}</p>
       <div class="name">
         <div class="box">
-          <div class="label">氏名</div>
+          <div class="label">{{ t('listUser.name') }}</div>
           <div class="content">{{ fullname }}</div>
         </div>
-        <ModalEditName title="氏名の編集" />
+        <ModalEditName :title="t('option_list.editName')" />
       </div>
       <div class="email">
         <div class="box">
-          <div class="label">メールアドレス</div>
+          <div class="label">{{ t('login.email') }}</div>
           <div class="content">{{ getterUsers[props.id-1].email }}</div>
         </div>
-        <ModalReInvite title="再招待"/>
+        <ModalReInvite :title="t('option_list.reinvitation')" :name="fullname" :email="getterUsers[props.id-1].email"/>
       </div>
       <div class="password">
         <div class="box">
-          <div class="label">パスワード</div>
-          <div class="content" typeof="password">{{ getterUsers[props.id-1].password }}</div>
+          <div class="label">{{ t('login.password') }}</div>
+          <input class="content" type="password" :value="getterUsers[props.id-1].password" disabled/>
         </div>
-        <ModalEditPassword title="パスワードの更新" />
+        <ModalEditPassword :title="t('modalUpdatePassword.updatePassword')" />
       </div>
       <div class="role">
         <div class="box">
-          <div class="label">ロール</div>
+          <div class="label">{{ t('listUser.role') }}</div>
           <div class="content">{{ getterUsers[props.id-1].role }}</div>
         </div>
-        <ModalEditRole title="役割の編集" />
+        <ModalEditRole :title="t('modalEditRole_1.editRole')" />
       </div>
       <div class="group">
         <div class="box">
-          <div class="label">グループ</div>
+          <div class="label">{{ t('sidebar.group') }}</div>
           <div class="content">
             <span>
               グループ A
@@ -53,7 +53,7 @@
             </span>
           </div>
         </div>
-        <ModalEditGroup title="グループの設定"/>
+        <ModalEditGroup :title="t('modalEditGroup.groupSetting')"/>
       </div>
     </div>
   </div>
@@ -71,6 +71,9 @@ import ModalReInvite from './ModalReInvite.vue';
 import ModalEditGroup from './ModalEditGroup.vue'
 import { useCurrentUserStore } from '@/stores/currentUser';
 import { useUserStore } from '@/stores/users';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n()
 
 const props = defineProps<{
   id?: number
@@ -135,6 +138,10 @@ const fullname = `${getterUsers[props.id-1].firstName} ${getterUsers[props.id-1]
 
 .email, .password, .role, .group {
   border-top: none;
+}
+
+.password .content{
+  border: none;
 }
 
 

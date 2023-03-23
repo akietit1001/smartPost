@@ -1,13 +1,15 @@
 <template>
   <div class="wrapper__nav-footer">
-    <Button text="完了" :class="props.stateBtn ? 'primary' : 'disabled'" @click="handleSubmit"/>
+    <Button :text="t('admin_invite.complete')" :class="props.stateBtn ? 'primary' : 'disabled'" @click="handleSubmit"/>
   </div>
 </template>
 
 <script setup lang="ts">
 import Button from './Button.vue';
 import userApi from '@/apis/userApi';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n()
 
 const props = defineProps<{
   stateBtn: Boolean

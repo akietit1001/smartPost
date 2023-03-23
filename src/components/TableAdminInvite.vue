@@ -3,14 +3,14 @@
     <div class="inner__table-admin-invite">
       <div class="form__table-admin-invite" v-for="child, index in props.children" :key="index">
       <div class="text-name__table-admin-invite">
-        <InputText label="氏名" type="text" placeholder="氏" @change="handleChangeFirstName"/>
-        <InputText type="text" placeholder="名" @change="handleChangeLastName"/>
+        <InputText :label="t('listUser.name')" type="text" :placeholder="t('admin_invite.firstName')" @change="handleChangeFirstName"/>
+        <InputText type="text" :placeholder="t('admin_invite.lastName')" @change="handleChangeLastName"/>
       </div>
       <div class="input-text__table-admin-invite">
-          <InputText label="メールアドレス" type="email" placeholder="xxxxx@xid.inc" @change="handleChangeEmail"/>
+          <InputText :label="t('listUser.email')" type="email" placeholder="xxxxx@xid.inc" @change="handleChangeEmail"/>
         </div>
         <div class="dropdown__table-admin-invite" :style="{marginBottom: '10px'}">
-          <Dropdown :options="options" :multiple="true" placeholder="ロールを選択する" label="ロール" />
+          <Dropdown :options="options" :multiple="true" :placeholder="t('admin_invite.chooseRole')" :label="t('listUser.role')" />
         </div>
         <div class="delete-icon__table-admin-invite" @click="removeFormData(index)">
           <img :src="deleteIcon" alt="">
@@ -27,6 +27,9 @@ import InputText from './InputText.vue';
 import Dropdown from './Dropdown.vue';
 import NavFooter from './NavFooter.vue';
 import deleteIcon from '@/assets/icons/delete.svg'
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n()
 
 const firstName = ref('');
 const lastName = ref('');
